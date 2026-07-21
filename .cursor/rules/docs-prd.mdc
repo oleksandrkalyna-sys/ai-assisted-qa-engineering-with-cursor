@@ -1,0 +1,22 @@
+---
+description: Conventions when editing docs/PRD and other requirements markdown
+globs: docs/**/*.md
+alwaysApply: false
+---
+
+# Docs / PRD maintenance
+
+`docs/PRD.md` is the **requirements source of truth** for the slide product.
+
+## When editing
+
+- Keep goals, non-goals, and acceptance criteria aligned with a slides-only repo
+- Do **not** move facilitator artifacts (agenda, timing, speaker notes, prep, Q&A banks) into “in repository” deliverables
+- Brand tokens and assets (§8) and the links checklist (§6) stay authoritative — if they change, update matching `.cursor/rules` files
+- Prefer precise requirement language over workshop prose or slide copy
+
+## Consistency checks
+
+- In-repo vs out-of-repo lists must stay mutually exclusive
+- Learning outcomes and must-cover topics must remain achievable from slides alone
+- Do not invent new brand systems or purple/AI aesthetics in brand requirements

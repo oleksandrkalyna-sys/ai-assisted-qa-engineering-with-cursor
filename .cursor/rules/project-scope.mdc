@@ -1,0 +1,33 @@
+---
+description: Product boundaries, non-goals, and language for this Slidev workshop repo
+alwaysApply: true
+---
+
+# Project scope
+
+This repo is a **Slidev workshop slide deck** for QA engineers, not a general app.
+
+## Source of truth
+
+When unsure about scope or requirements, read `@docs/PRD.md` before inventing deliverables.
+
+## In repository
+
+- Deck source: `slides.md`, `pages/`
+- Brand theme, styles, and assets
+- Package scripts (`dev` / `build` / `export`)
+- Requirements: `docs/PRD.md`
+
+## Out of repository (do not add as product files)
+
+- Agenda or timing / run-of-show docs
+- Speaker-notes deliverables or facilitator Q&A banks
+- Workshop prep checklists
+- Isara (or other private-project) live-demo scripts
+
+## Defaults
+
+- Language: **English** throughout
+- Audience: QA engineers
+- Starter Seriph / “Welcome to Slidev” content is **placeholder** — replace it; do not extend the demo narrative
+- Slides must be **self-descriptive**: a reader without a facilitator should understand concepts and find docs via in-slide links

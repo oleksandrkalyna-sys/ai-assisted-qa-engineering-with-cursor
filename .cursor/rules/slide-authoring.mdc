@@ -1,0 +1,44 @@
+---
+description: Slide structure, density, demo cues, and canonical link requirements
+globs: slides.md, pages/**/*.md
+alwaysApply: false
+---
+
+# Slide authoring
+
+Follow section order from `@docs/PRD.md`: title → overview → theory → best practices → practical → resources → Q&A/close.
+
+## Density and structure
+
+- Prefer **one idea per slide**
+- Use two-column layouts for comparisons (e.g. rules vs skills)
+- Implement **must-cover** first; keep stretch content clearly optional or in a short appendix
+- Do not rely on HTML comment speaker notes for core meaning
+
+## Demo cue slides
+
+Each cue slide must include:
+
+1. Goal (one sentence)
+2. What the attendee should observe
+3. Expected outcome class (e.g. “draft test + human review”)
+4. Link to relevant Cursor docs when applicable
+
+Cues may illustrate patterns from a live project; they must remain understandable without private-repo access.
+
+## Links
+
+Every non-trivial tool or claim with an official source needs a URL on that slide **or** on Resources. Prefer Resources as the single link-update hub.
+
+Required checklist (verify URLs still resolve; update if Cursor moves docs):
+
+| Topic | URL |
+| --- | --- |
+| Cursor docs | https://cursor.com/docs |
+| Agent overview | https://cursor.com/docs/agent/overview |
+| Rules | https://cursor.com/docs/context/rules |
+| Skills | https://cursor.com/docs/skills |
+| Commands | https://cursor.com/docs (commands path) |
+| Pricing | https://cursor.com/pricing |
+| AGENTS.md | https://agents.md/ |
+| Slidev | https://sli.dev/ |

@@ -1,0 +1,78 @@
+---
+description: MEV corporate brand tokens, assets, typography, and layout vocabulary for Slidev theme
+globs: "**/*.{css,vue}", styles/**/*, theme/**/*, components/**/*, public/brand/**
+alwaysApply: false
+---
+
+# Brand and theme
+
+Match corporate Simple Light presentation standards (~16:9). Full spec: `@docs/PRD.md` §8.
+
+## Brand assets (`public/brand/`)
+
+Use committed assets — do not invent backgrounds or substitute stock imagery.
+
+| File | Layout / usage |
+| --- | --- |
+| `bg-default.jpg` | Title, title+body, two-column, title-only, Q&A |
+| `bg-section-blue.jpg` | Section header (dark field, light text) |
+| `bg-section-light.jpg` | Section opener variant (light field) |
+| `bg-thankyou.jpg` | Thank-you / strong brand close |
+| `logo-mev.png` | Top-right on branded slides |
+| `motif-arc.png` | Bottom-left accent on title and section slides |
+
+### Editorial figures (`public/brand/figures/`)
+
+B&W vintage cutouts with selective primary-blue accents — part of the corporate look, not generic stock.
+
+| File | Suggested use |
+| --- | --- |
+| `figure-filmmaker.png` | Title, intro, “observe / document” themes |
+| `figure-vintage-tv.png` | Title hero, strong brand moments |
+| `figure-retro-computer.png` | Tech / tooling / Cursor-harness topics |
+| `figure-pointing-hand.png` | Callouts, bullets, “look here” emphasis |
+| `figure-enter-runners.png` | Momentum, action, best-practices sections |
+| `figure-crt-communicator.png` | Q&A, communication, stretch content |
+
+**Usage:** 0–1 figure per content slide; title/section slides may use one hero figure (right or bottom). Do not crowd text. Slides 19–21 in the PowerPoint are asset-catalog demos — do not replicate that collage layout.
+
+## Color tokens
+
+Prefer CSS variables over one-off hardcodes:
+
+| Token | Hex | Usage |
+| --- | --- | --- |
+| Primary | `#002894` | Section headers, strong brand fields |
+| Accent | `#4285F4` | Highlights |
+| Soft blue | `#B8CBFF` | Secondary panels |
+| Dark | `#212126` / `#000000` | Body text |
+| Light | `#FFFFFF` / `#EEEEEE` | Backgrounds |
+| Link | `#0097A7` | Hyperlinks |
+
+Amber / cyan / lime accents sparingly only if matching the template.
+
+## Typography
+
+- Display / titles: Oswald (Google Fonts or equivalent geometric sans)
+- Body: Arial or equivalent clean sans
+
+## Layout vocabulary
+
+Implement: title, section header, title+body, title+two columns, title-only, Q&A, thank-you. Contact only if the template requires a close layout.
+
+Map each layout to the background asset above; place logo and motif consistently per PRD §8.
+
+## Do not
+
+```text
+❌ Keep @slidev/theme-seriph as visual identity
+❌ Purple-on-white / generic “AI gradient” aesthetics
+❌ Invent a new brand system or ad-hoc backgrounds
+❌ Use random stock photos outside the committed figure set
+❌ Replicate the PowerPoint asset-catalog collage slides (19–21)
+```
+
+```text
+✅ Encode tokens in theme/CSS; reference public/brand/ assets
+✅ Mirror corporate layouts, not default Slidev starter chrome
+```

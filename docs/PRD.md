@@ -280,6 +280,38 @@ Implement or approximate these layout intents:
 - Thank you
 - Contact (optional close)
 
+### Brand assets (`public/brand/`)
+
+Extracted from the corporate Presentation template. Use these committed files in the Slidev theme — do not substitute ad-hoc backgrounds or decorative stock photos from template example slides.
+
+| Asset | File | Usage |
+| --- | --- | --- |
+| Default background | `bg-default.jpg` | Title, title+body, two-column, title-only, Q&A |
+| Section background (blue) | `bg-section-blue.jpg` | Section header slides (dark field, light text) |
+| Section background (light) | `bg-section-light.jpg` | Section opener variant |
+| Thank-you background | `bg-thankyou.jpg` | Thank-you / strong brand close |
+| Logo | `logo-mev.png` | Top-right on branded slides |
+| Arc motif | `motif-arc.png` | Bottom-left accent on title and section slides |
+
+Placement: logo top-right; arc motif bottom-left. Backgrounds are 1920×1080 (~16:9). Logo and motif are PNG with transparency.
+
+#### Editorial figures (`public/brand/figures/`)
+
+B&W vintage photo cutouts and retro-tech collages with selective primary-blue accents. These give the deck its corporate editorial tone — use them, not generic stock imagery.
+
+| Asset | File | Suggested use |
+| --- | --- | --- |
+| Filmmaker | `figure-filmmaker.png` | Title, intro, observation/documentation themes |
+| Vintage TV | `figure-vintage-tv.png` | Title hero, strong brand moments |
+| Retro computer | `figure-retro-computer.png` | Tech, tooling, harness topics |
+| Pointing hand | `figure-pointing-hand.png` | Callouts, bullets, emphasis |
+| Enter runners | `figure-enter-runners.png` | Momentum, action, best-practices |
+| CRT communicator | `figure-crt-communicator.png` | Q&A, communication, stretch |
+
+Use 0–1 figure per content slide; title/section slides may include one hero figure. Do not crowd body text.
+
+PowerPoint slides 19–21 are asset-catalog collages (many images + GIFs) — **not** a layout to replicate. One-off images from those slides that are not in `public/brand/` are excluded.
+
 ### Brand non-goals
 
 - New visual identity
@@ -318,7 +350,7 @@ The deck is **done** when all of the following are true:
 1. **Self-descriptive:** A QA engineer can learn the must-cover topics from the slides alone.
 2. **Section complete:** All must-cover items in §4 and §5 appear as slides (or clear slide groups).
 3. **Link-complete:** Every item on the §6 required links checklist appears on-slide or on Resources and resolves.
-4. **Brand-aligned:** Colors, typography intent, aspect ratio, and layout vocabulary match §8; default Seriph starter look is gone.
+4. **Brand-aligned:** Colors, typography intent, aspect ratio, layout vocabulary, and `public/brand/` assets match §8; default Seriph starter look is gone.
 5. **Repo-clean:** No agenda, timing, speaker-notes deliverable, prep, or facilitator Q&A bank files are required or committed as product artifacts.
 6. **Runnable:** `npm run dev` presents the workshop deck; `npm run build` / `npm run export` remain viable for SPA/PDF/PPTX distribution.
 7. **Language:** All slide content is English.
@@ -329,7 +361,7 @@ The deck is **done** when all of the following are true:
 
 | Risk | Mitigation |
 | --- | --- |
-| Brand fidelity gap (Slidev ≠ PowerPoint) | Encode tokens in CSS/theme; visually compare against template layouts during implementation |
+| Brand fidelity gap (Slidev ≠ PowerPoint) | Use `public/brand/` assets and CSS tokens; visually compare layouts against template during implementation |
 | Link rot (Cursor docs paths change) | Verify URLs at implementation; keep Resources as single update point |
 | Over-dense slides | Enforce one-idea-per-slide; move detail to stretch or Resources |
 | Demo cues too project-specific | Keep cues pattern-based; never require private repo access to understand the slide |
