@@ -6,14 +6,26 @@ alwaysApply: false
 
 # Slide authoring
 
-Follow section order from `@docs/PRD.md`: title → overview → theory → best practices → practical → resources → Q&A/close.
+Follow section order from `@docs/PRD.md`: title → theory → best practices → practical → resources → Q&A/close.
+
+`pages/` files are numbered to match: `01-intro.md` … `06-close.md` (intro = cover + agenda).
 
 ## Density and structure
 
 - Prefer **one idea per slide**
-- Use two-column layouts for comparisons (e.g. rules vs skills)
+- Use two-column layouts for comparisons (e.g. rules vs skills) and for **text + figure** pairs
+- **Figures:** `layout: two-cols` + `<TwoColFigure />` in `::right::` (see `.cursor/rules/brand-and-theme.mdc`); cover hero uses `<SectionFigure>` only
 - Implement **must-cover** first; keep stretch content clearly optional or in a short appendix
 - Do not rely on HTML comment speaker notes for core meaning
+
+## Prose punctuation
+
+In `slides.md` and `pages/**/*.md` body copy (and on-slide link labels):
+
+- Use a spaced **en dash**: ` – ` (U+2013) for parenthetical breaks, appositives, and “label – detail” (e.g. harness – code, config…; **Generate** – draft tests).
+- Do **not** use em dashes (`—`) or spaced ASCII hyphens (` - `) for those breaks.
+- Do **not** change Slidev frontmatter dividers (`---` alone on a line), markdown table separators (`| --- |`), HTML comment closers (`-->`), or compact numeric ranges (`0–1`, `01`–`06`).
+- Keep workflow arrows as `→` where already used (e.g. generate → review).
 
 ## Demo cue slides
 

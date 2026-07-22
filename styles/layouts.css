@@ -1,0 +1,320 @@
+.slidev-layout.cover,
+.slidev-layout.section,
+.slidev-layout.thank-you,
+.slidev-layout.qa {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slidev-layout.cover {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 3.5rem 2rem;
+
+  .cover-logo {
+    height: 4.5rem;
+    width: auto;
+    margin: 0 auto 5.5rem;
+    flex-shrink: 0;
+  }
+
+  .cover-content {
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-figure {
+    z-index: 2;
+    /* Pin to slide bottom-right; keep clear of centered title */
+    bottom: 1.5rem !important;
+    right: 2rem !important;
+    max-height: 38%;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 4rem;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    color: var(--mev-primary);
+    text-align: center;
+  }
+
+  h2,
+  p {
+    font-size: 1.25rem;
+    color: var(--mev-dark);
+    text-align: center;
+  }
+}
+
+.slidev-layout.section {
+  --uno: text-left;
+
+  &.section--blue {
+    color: var(--mev-white);
+
+    h1,
+    h2,
+    p {
+      color: var(--mev-white);
+    }
+  }
+
+  &.section--light {
+    color: var(--mev-dark);
+
+    h1 {
+      color: var(--mev-primary);
+    }
+  }
+
+  h1 {
+    --uno: text-5xl;
+  }
+}
+
+.slidev-layout.default,
+.slidev-layout.two-columns,
+.slidev-layout.center {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slidev-layout.default {
+  display: flex !important;
+  flex-direction: column;
+  padding-top: 5rem !important;
+}
+
+.slidev-layout.default .slide-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.slidev-layout.default .slide-body > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.slidev-layout.default .slide-body > h1 {
+  padding-bottom: 0 !important;
+}
+
+/* Guaranteed spacer under title (theme margins cannot collapse this) */
+.slidev-layout.default .slide-body > h1::after {
+  content: '';
+  display: block;
+  height: 2rem;
+  width: 100%;
+}
+
+.slidev-layout.default .slide-body p,
+.slidev-layout.default .slide-body li {
+  color: var(--mev-dark);
+}
+
+.slidev-layout.default .slide-body strong {
+  color: var(--mev-dark);
+  font-weight: 700;
+}
+
+.slidev-layout.default .slide-body > ul > li,
+.slidev-layout.default .slide-body > ol > li {
+  margin-bottom: 0.55rem;
+}
+
+/* Full-width centered diagram + footer bullets (SDLC shift slide) */
+.slidev-layout.default.slide-sdlc-shift .two-col-figure {
+  display: block;
+  width: 100%;
+  max-height: 14.5rem;
+  margin: 0 auto;
+  object-fit: contain;
+  box-shadow: none;
+}
+
+.slidev-layout.default.slide-sdlc-shift .slide-sdlc-takeaways {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.slidev-layout.default.slide-sdlc-shift .slide-sdlc-takeaways ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.slidev-layout.default.slide-sdlc-shift .slide-sdlc-takeaways li {
+  margin-bottom: 0.35rem;
+}
+
+.slidev-layout.default.slide-sdlc-shift .slide-sdlc-takeaways li:last-child {
+  margin-bottom: 0;
+}
+
+.slidev-layout.two-columns {
+  padding-top: 5rem !important;
+  /* Title lives in the left column only; right figures offset by this band (up to 2 lines + spacer). */
+  --two-col-title-line-height: calc(2.35rem * 1.2);
+  --two-col-title-band: calc(var(--two-col-title-line-height) * 2 + 2rem);
+
+  .harness-links {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0.75rem 0 0;
+    line-height: 1.35;
+  }
+
+  .harness-links > li {
+    margin: 0 0 0.1rem;
+  }
+
+  .harness-links > li:last-child {
+    margin-bottom: 0;
+  }
+
+  .slide-epigraph {
+    margin: 1rem 0 0;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--mev-dark);
+    opacity: 0.65;
+  }
+}
+
+.slidev-layout.two-columns .col-left > h1:first-child {
+  min-height: calc(var(--two-col-title-line-height) * 2);
+}
+
+.slidev-layout.two-columns h1 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.slidev-layout.two-columns h1::after {
+  content: '';
+  display: block;
+  height: 2rem;
+  width: 100%;
+}
+
+.slidev-layout.two-columns h1 + * {
+  margin-top: 0 !important;
+}
+
+/* Right-column diagrams, screenshots, and editorial figures (below slide title) */
+.slidev-layout.two-columns .two-col-figure {
+  display: block;
+  width: 100%;
+  max-height: 22rem;
+  margin-top: var(--two-col-title-band);
+  object-fit: contain;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+}
+
+.slidev-layout.two-columns .two-col-figure-source {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-align: right;
+}
+
+.slidev-layout.two-columns .two-col-right-slot {
+  margin-top: var(--two-col-title-band);
+}
+
+.slidev-layout.center {
+  padding-top: 5rem !important;
+}
+
+.slidev-layout.section {
+  padding-top: 4.5rem !important;
+  padding-left: 3.5rem !important;
+}
+
+.slidev-layout.center {
+  --uno: text-center;
+
+  h1 {
+    --uno: text-5xl;
+  }
+}
+
+.slidev-layout.qa {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 3.5rem 2rem;
+
+  .qa-content {
+    max-width: 44rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin: 0 0 1.25rem;
+    color: var(--mev-primary);
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.3rem;
+    line-height: 1.45;
+    color: var(--mev-dark);
+  }
+
+  .section-figure {
+    z-index: 2;
+    bottom: 1.25rem !important;
+    right: 2rem !important;
+    max-height: 44%;
+    width: auto;
+  }
+}
+
+.slidev-layout.thank-you {
+  --uno: text-center;
+  color: var(--mev-white);
+
+  h1,
+  h2,
+  p {
+    color: var(--mev-white);
+  }
+
+  h1 {
+    --uno: text-6xl;
+  }
+}
+
+.slidev-layout.two-columns {
+  .col-left,
+  .col-right {
+    --uno: pr-4;
+  }
+
+  .col-right {
+    --uno: pl-4;
+  }
+}

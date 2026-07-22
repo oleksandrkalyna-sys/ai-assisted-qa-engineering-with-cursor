@@ -18,8 +18,12 @@ Use committed assets — do not invent backgrounds or substitute stock imagery.
 | `bg-section-blue.jpg` | Section header (dark field, light text) |
 | `bg-section-light.jpg` | Section opener variant (light field) |
 | `bg-thankyou.jpg` | Thank-you / strong brand close |
-| `logo-mev.png` | Top-right on branded slides |
-| `motif-arc.png` | Bottom-left accent on title and section slides |
+| `logo-mev.png` | White wordmark — top-right on **dark** slides (`section` blue, `thank-you`) |
+| `motif-arc.png` | Dark wordmark + arc — top-right on **light** slides; cover hero; bottom-left accent on light section/Q&A |
+
+### Logo contrast
+
+Use `<BrandLogo variant="dark" />` on light backgrounds and `<BrandLogo variant="light" />` on dark backgrounds. Default is `dark`. Cover uses the hero logo centered — no corner `BrandLogo`.
 
 ### Editorial figures (`public/brand/figures/`)
 
@@ -34,7 +38,24 @@ B&W vintage cutouts with selective primary-blue accents — part of the corporat
 | `figure-enter-runners.png` | Momentum, action, best-practices sections |
 | `figure-crt-communicator.png` | Q&A, communication, stretch content |
 
-**Usage:** 0–1 figure per content slide; title/section slides may use one hero figure (right or bottom). Do not crowd text. Slides 19–21 in the PowerPoint are asset-catalog demos — do not replicate that collage layout.
+**Usage:** 0–1 figure per content slide. **Do not** use `<SectionFigure>` on title+body or two-column slides.
+
+#### Two-column figures (diagrams, screenshots, editorial art)
+
+On `layout: two-cols` slides:
+
+- **Left:** slide title + body copy.
+- **Right:** `<TwoColFigure src="/brand/figures/…" alt="…" />` in the `::right::` slot (starts **below** the title line; styling lives in `styles/layouts.css` — do not hand-roll `img` classes).
+- Optional attribution under the figure: `<p class="two-col-figure-source">…</p>`.
+- Non-image right column (e.g. a table): wrap in `<div class="two-col-right-slot">…</div>` for the same vertical alignment.
+
+Diagrams and workshop screenshots live under `public/brand/figures/` (e.g. `diagram-*.png`, `sample-agents-md.png`).
+
+#### Cover hero only (`SectionFigure`)
+
+Use `<SectionFigure>` **only** on the **cover** slide (`position="bottom"` or `right` per layout). Section headers may use it sparingly; never mix with `TwoColFigure` on the same slide.
+
+Slides 19–21 in the PowerPoint are asset-catalog demos — do not replicate that collage layout.
 
 ## Color tokens
 

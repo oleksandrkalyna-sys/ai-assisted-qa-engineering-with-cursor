@@ -50,8 +50,7 @@ Structure the PRD as:
 
 Ordered narrative for ~1h delivery; PRD defines **slide sections**, not a clock:
 
-- **Title / intro** — workshop name, audience framing, what you will learn
-- **Overview** — self-descriptive section map (replaces a separate agenda doc)
+- **Title / intro** — workshop title; Agenda slide (`pages/01-intro.md`)
 - **General theory** — tokens, agents, models, harness, pricing, `AGENTS.md`, QA mental model
 - **Cursor best practices** — modes, context/rules/skills, safe QA patterns, verification
 - **Practical usage** — skills/commands; on-slide demo cues (self-contained enough without a prep doc)

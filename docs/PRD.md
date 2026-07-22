@@ -73,13 +73,12 @@ Ordered narrative for ~1h delivery. The PRD defines **sections and slide intent*
 
 | # | Section | Purpose |
 | --- | --- | --- |
-| 1 | Title / intro | Workshop name, audience framing, what you will learn |
-| 2 | Overview | Self-descriptive section map (replaces a separate agenda) |
-| 3 | General theory | Foundational concepts for using Cursor effectively |
-| 4 | Cursor best practices | How QA engineers should work day to day |
-| 5 | Practical usage | Skills, commands, and on-slide demo cues |
-| 6 | Resources | Curated canonical links |
-| 7 | Q&A / close | Q&A and thank-you layouts |
+| 1 | Title / intro | Workshop title; **Agenda** slide (outcomes, no timing) |
+| 2 | General theory | Foundational concepts for using Cursor effectively |
+| 3 | Cursor best practices | How QA engineers should work day to day |
+| 4 | Practical usage | Skills, commands, and on-slide demo cues |
+| 5 | Resources | Curated canonical links |
+| 6 | Q&A / close | Q&A and thank-you layouts |
 
 ### Must-cover vs stretch
 
@@ -87,7 +86,7 @@ Use **must-cover** slides for a tight session; add **stretch** slides when there
 
 #### Must-cover
 
-- Title, learning outcomes, overview map
+- Title cover; **Agenda** slide (outcomes aligned with §3)
 - Tokens & context window (QA implications)
 - Models vs agents vs tools/harness
 - Pricing / usage awareness + link
@@ -119,28 +118,24 @@ Use **must-cover** slides for a tight session; add **stretch** slides when there
 
 - Workshop title: **AI-Assisted QA Engineering with Cursor**
 - Audience: QA engineers
-- 3–5 bullet “what you will learn” outcomes (aligned with §3)
-- Visual: corporate title layout vocabulary
+- Cover slide (corporate title layout vocabulary)
+- One **default** slide after cover: **Agenda** (3–5 outcomes aligned with §3; not a run-of-show or clock times)
+- Section headers in later parts (best practices, practical, resources) mark major transitions; theory opens on **Tokens** (no separate opener slide)
 
-### 5.2 Overview
-
-- Single slide (or short sequence) listing sections 3–7
-- Must be readable as a standalone map of the deck
-- No clock times or facilitator cues
-
-### 5.3 General theory (must-cover topics)
+### 5.2 General theory (must-cover topics)
 
 | Topic | Slide intent |
 | --- | --- |
 | Tokens & context | What a token is; why context window size matters for large test suites / logs |
-| Models | What a model is; that model choice affects quality, speed, and cost |
+| Models | What a model is; quality, speed, and non-determinism; practical default (e.g. Composer) |
+| Pricing & usage | Dedicated slide **after Models**; QA drivers (context, Agent vs Chat); link to current pricing |
 | Agents | Agent = model + instructions + tools, looping toward a goal |
-| Harness | Cursor’s orchestration layer (tools, permissions, UI) around the model |
-| Pricing | Enough awareness for responsible daily use; link to current pricing |
+| Harness | Cursor’s orchestration layer (tools, permissions, UI) around the model — on-slide with Agents |
 | `AGENTS.md` | Project-level agent instructions; open format; why teams adopt it |
+| Rules / skills / commands | How each steers agents; links to docs |
 | QA mental model | generate → review → verify → automate |
 
-### 5.4 Cursor best practices (must-cover topics)
+### 5.3 Cursor best practices (must-cover topics)
 
 | Topic | Slide intent |
 | --- | --- |
@@ -149,7 +144,7 @@ Use **must-cover** slides for a tight session; add **stretch** slides when there
 | Safe patterns | Test generation, bug investigation, flake triage with human verification |
 | Trust boundary | What not to merge/run without review (secrets, flaky assertions, silent deletes) |
 
-### 5.5 Practical usage (must-cover topics)
+### 5.4 Practical usage (must-cover topics)
 
 | Topic | Slide intent |
 | --- | --- |
@@ -164,13 +159,13 @@ Demo cue slides must include:
 - Expected outcome class (e.g. “draft test + human review”)
 - Link to relevant Cursor docs where applicable
 
-### 5.6 Resources
+### 5.5 Resources
 
 Dedicated slide(s) listing all required canonical URLs (see §6). Prefer one scannable list over dense prose.
 
-### 5.7 Q&A / close
+### 5.6 Q&A / close
 
-- Corporate-style Q&A layout
+- Q&A slide: `layout: two-cols` with title left and optional editorial figure right (`TwoColFigure`), or dedicated `qa` layout if centered copy is required later
 - Thank-you layout
 - Optional contact layout only if brand template requires it for closing; no facilitator FAQ dump
 
@@ -307,8 +302,12 @@ B&W vintage photo cutouts and retro-tech collages with selective primary-blue ac
 | Pointing hand | `figure-pointing-hand.png` | Callouts, bullets, emphasis |
 | Enter runners | `figure-enter-runners.png` | Momentum, action, best-practices |
 | CRT communicator | `figure-crt-communicator.png` | Q&A, communication, stretch |
+| Tokenizer diagram | `diagram-tokenizer-example.png` | Tokens slide (two-column) |
+| Context window diagram | `diagram-context-window.png` | Context window slide |
+| Agent harness diagram | `diagram-agent-harness.png` | Agents slide |
+| AGENTS.md sample | `sample-agents-md.png` | AGENTS.md slide |
 
-Use 0–1 figure per content slide; title/section slides may include one hero figure. Do not crowd body text.
+Use 0–1 figure per content slide. On **`layout: two-cols`** slides, put copy on the left and visuals on the right with **`<TwoColFigure src="…" alt="…" />`** (shared spacing in `styles/layouts.css` — image sits below the slide title). Optional source line: class `two-col-figure-source`. Non-image right columns use wrapper class `two-col-right-slot`. Use **`<SectionFigure>` only on the cover** hero (not on content slides).
 
 PowerPoint slides 19–21 are asset-catalog collages (many images + GIFs) — **not** a layout to replicate. One-off images from those slides that are not in `public/brand/` are excluded.
 
@@ -324,11 +323,12 @@ PowerPoint slides 19–21 are asset-catalog collages (many images + GIFs) — **
 
 ### Must
 
-- Section overview on-deck (no external agenda file)
+- Optional **section header** slides between major parts (theory opens on content slides)
 - Definitions readable without spoken filler
 - Demo **cue** slides that stand alone (goal, observe, outcome) without a prep doc
 - Resources / inline links for standards and Cursor features
 - English throughout
+- **Punctuation:** In slide body copy and link labels, use a spaced **en dash** (` – `, U+2013) for breaks and appositives—not an em dash (`—`) or a spaced hyphen (` - `). Keep Slidev dividers (`---` on its own line), markdown table rules (`| --- |`), and numeric ranges (`0–1`) unchanged; use `→` for step sequences.
 
 ### Must not
 
@@ -339,7 +339,7 @@ PowerPoint slides 19–21 are asset-catalog collages (many images + GIFs) — **
 
 ### Density guideline
 
-Prefer one idea per slide. Use two-column layouts for comparisons (e.g. rules vs skills). Move long URL lists to Resources rather than crowding theory slides.
+Prefer one idea per slide. Use two-column layouts for comparisons and for text + figure pairs (`TwoColFigure` on the right). Move long URL lists to Resources rather than crowding theory slides.
 
 ---
 
@@ -354,6 +354,7 @@ The deck is **done** when all of the following are true:
 5. **Repo-clean:** No agenda, timing, speaker-notes deliverable, prep, or facilitator Q&A bank files are required or committed as product artifacts.
 6. **Runnable:** `npm run dev` presents the workshop deck; `npm run build` / `npm run export` remain viable for SPA/PDF/PPTX distribution.
 7. **Language:** All slide content is English.
+8. **Prose punctuation:** Slide copy and on-slide link labels follow the en-dash rule in §9 (no em dashes or spaced hyphens used as sentence dashes).
 
 ---
 

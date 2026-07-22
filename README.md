@@ -1,11 +1,30 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# AI-Assisted QA Engineering with Cursor
 
-To start the slide show:
+English [Slidev](https://sli.dev/) workshop slide deck for QA engineers.
 
-- `npm install`
-- `npm run dev`
-- visit <http://localhost:3030>
+## Requirements
 
-Edit the [slides.md](./slides.md) to see the changes.
+Product requirements live in [docs/PRD.md](docs/PRD.md). Agent guidance: [AGENTS.md](AGENTS.md) and [.cursor/rules/](.cursor/rules/).
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+## Scripts
+
+```bash
+npm install
+npm run dev      # present locally (http://localhost:3030)
+npm run build    # SPA build
+npm run export   # export (PDF/PPTX via Slidev)
+```
+
+## Structure
+
+| Path | Role |
+| --- | --- |
+| `slides.md` | Deck entry (frontmatter + page imports) |
+| `pages/` | Section files `01-intro.md` … `06-close.md` (intro = cover + agenda) |
+| `layouts/` | Corporate MEV layouts |
+| `styles/` | Brand CSS tokens |
+| `components/` | BrandLogo, BrandMotif, SectionFigure, TwoColFigure, CanonicalLinks |
+| `public/brand/` | Backgrounds, logo, motif, editorial figures |
+| `data/links.ts` | Canonical docs URLs (Resources single source) |
+
+Starter Seriph demo content has been removed; this repo is the workshop product.
