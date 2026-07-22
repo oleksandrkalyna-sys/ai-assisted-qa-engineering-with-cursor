@@ -190,7 +190,7 @@ showMotif: false
 
 # Demo time
 
-Live **Cursor** demo – **Isara** project
+Live **Cursor** demo – DoR, follow-ups, test cases, runs, and bugs
 
 - **DoR for testing** – verify ticket acceptance criteria are covered in the dev implementation before you start testing
 - **Follow-up task** – create a tracking task from gaps, questions, or next steps

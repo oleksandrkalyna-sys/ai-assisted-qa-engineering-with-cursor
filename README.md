@@ -27,4 +27,3 @@ npm run export   # export (PDF/PPTX via Slidev)
 | `public/brand/` | Backgrounds, logo, motif, editorial figures |
 | `data/links.ts` | Canonical docs URLs (Resources single source) |
 
-Starter Seriph demo content has been removed; this repo is the workshop product.
