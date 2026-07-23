@@ -51,9 +51,9 @@ On `layout: two-cols` slides:
 
 Diagrams and workshop screenshots live under `public/brand/figures/` (e.g. `diagram-*.png`, `sample-agents-md.png`).
 
-#### Cover hero only (`SectionFigure`)
+#### Cover and Q&A (`SectionFigure`)
 
-Use `<SectionFigure>` **only** on the **cover** slide (`position="bottom"` or `right` per layout). Section headers may use it sparingly; never mix with `TwoColFigure` on the same slide.
+Use `<SectionFigure>` on the **cover** slide (`position="bottom"` or `right` per layout) and on the **Q&A** layout (`05-close.md`). Do **not** use on ordinary title+body or two-column content slides. Section headers may use it sparingly; never mix with `TwoColFigure` on the same slide.
 
 Slides 19–21 in the PowerPoint are asset-catalog demos — do not replicate that collage layout.
 

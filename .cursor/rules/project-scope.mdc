@@ -9,7 +9,7 @@ This repo is a **Slidev workshop slide deck** for QA engineers, not a general ap
 
 ## Source of truth
 
-When unsure about scope or requirements, read `@docs/PRD.md` before inventing deliverables.
+**`slides.md` and `pages/*.md`** define what ships in the deck. **`docs/PRD.md`** describes the as-built product and maintenance rules; update it when the deck changes. When unsure about scope, read the PRD before inventing deliverables.
 
 ## In repository
 
@@ -29,5 +29,5 @@ When unsure about scope or requirements, read `@docs/PRD.md` before inventing de
 
 - Language: **English** throughout
 - Audience: QA engineers
-- Starter Seriph / “Welcome to Slidev” content is **placeholder** — replace it; do not extend the demo narrative
+- Visual identity is **default** Slidev + MEV brand assets — do not reintroduce Seriph starter or “Welcome to Slidev” demo narrative
 - Slides must be **self-descriptive**: a reader without a facilitator should understand concepts and find docs via in-slide links

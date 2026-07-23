@@ -8,6 +8,8 @@ Product requirements live in [docs/PRD.md](docs/PRD.md). Agent guidance: [AGENTS
 
 ## Scripts
 
+Requires **Node.js 20+** (`package.json` `engines`).
+
 ```bash
 npm install
 npm run dev      # present locally (http://localhost:3030)
@@ -20,7 +22,7 @@ npm run export   # export (PDF/PPTX via Slidev)
 | Path | Role |
 | --- | --- |
 | `slides.md` | Deck entry (frontmatter + page imports) |
-| `pages/` | Section files `01-intro.md` … `06-close.md` (intro = cover + agenda) |
+| `pages/` | `01-intro`, `02-theory`, `03-practical`, `04-best-practices`, `05-close` (`06` reserved for resources) |
 | `layouts/` | Corporate MEV layouts |
 | `styles/` | Brand CSS tokens |
 | `components/` | BrandLogo, BrandMotif, SectionFigure, TwoColFigure, CanonicalLinks |

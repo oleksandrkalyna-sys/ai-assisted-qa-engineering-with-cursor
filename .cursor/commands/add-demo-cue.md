@@ -1,6 +1,6 @@
 # Add demo cue slide
 
-Insert a self-descriptive demo cue into `pages/04-practical.md` (or the practical section being edited).
+Insert a self-descriptive demo cue into `pages/03-practical.md` (or the practical section being edited).
 
 ## Template
 

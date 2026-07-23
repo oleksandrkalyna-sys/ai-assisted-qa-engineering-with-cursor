@@ -6,16 +6,16 @@ alwaysApply: false
 
 # Slide authoring
 
-Follow section order from `@docs/PRD.md`: title → theory → best practices → practical → resources → Q&A/close.
+Follow `slides.md` import order (documented in `@docs/PRD.md` §4): `01-intro` → `02-theory` → `03-practical` → `04-best-practices` → `05-close`. Optional future: `06-resources` (insert before close in `slides.md` when added).
 
-`pages/` files are numbered to match: `01-intro.md` … `06-close.md` (intro = cover + agenda).
+`pages/` file numbers match that order (`01`–`05`; `06` reserved for resources).
 
 ## Density and structure
 
 - Prefer **one idea per slide**
 - Use two-column layouts for comparisons (e.g. rules vs skills) and for **text + figure** pairs
-- **Figures:** `layout: two-cols` + `<TwoColFigure />` in `::right::` (see `.cursor/rules/brand-and-theme.mdc`); cover hero uses `<SectionFigure>` only
-- Implement **must-cover** first; keep stretch content clearly optional or in a short appendix
+- **Figures:** `layout: two-cols` + `<TwoColFigure />` in `::right::` (see `.cursor/rules/brand-and-theme.mdc`); `<SectionFigure>` on cover and Q&A per PRD §8
+- Prefer one idea per slide; optional formal demo cues in `03-practical.md` and `<CanonicalLinks />` on `06-resources.md`
 - Do not rely on HTML comment speaker notes for core meaning
 
 ## Prose punctuation
@@ -27,20 +27,14 @@ In `slides.md` and `pages/**/*.md` body copy (and on-slide link labels):
 - Do **not** change Slidev frontmatter dividers (`---` alone on a line), markdown table separators (`| --- |`), HTML comment closers (`-->`), or compact numeric ranges (`0–1`, `01`–`06`).
 - Keep workflow arrows as `→` where already used (e.g. generate → review).
 
-## Demo cue slides
+## Demo content
 
-Each cue slide must include:
-
-1. Goal (one sentence)
-2. What the attendee should observe
-3. Expected outcome class (e.g. “draft test + human review”)
-4. Link to relevant Cursor docs when applicable
-
-Cues may illustrate patterns from a live project; they must remain understandable without private-repo access.
+- **Demo time** (`03-practical.md`): section header + bullet outline for live delivery; keep self-contained without private-repo prep docs.
+- **Formal demo cue slides** (additional slides in `03-practical.md`): each cue must include Goal, Observe, Outcome, and Docs (see slide-authoring skill). Cues may illustrate patterns from a live project but must remain understandable without private-repo access.
 
 ## Links
 
-Every non-trivial tool or claim with an official source needs a URL on that slide **or** on Resources. Prefer Resources as the single link-update hub.
+Every non-trivial tool or claim with an official source needs a URL on that slide **or** on a Resources slide (`<CanonicalLinks />`). Maintain the registry in `data/links.ts`; prefer on-slide links for topics as introduced today.
 
 Required checklist (verify URLs still resolve; update if Cursor moves docs):
 

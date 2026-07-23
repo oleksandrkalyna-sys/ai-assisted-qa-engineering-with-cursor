@@ -12,7 +12,7 @@ Requirements: `@docs/PRD.md`. Rules: `.cursor/rules/slide-authoring.mdc`, `.curs
 
 ## Add a section header
 
-1. Choose the section file under `pages/` (e.g. `02-theory.md`; numbered `01`–`06`).
+1. Choose the section file under `pages/` (e.g. `02-theory.md`, `03-practical.md`; numbered `01`–`05`, with `06` reserved for resources).
 2. Insert:
 
 ```markdown
@@ -107,19 +107,10 @@ Cues may illustrate patterns from a live project but must remain understandable 
 
 ## Resources / links
 
-- Do not hardcode long URL lists on theory slides.
+- Do not hardcode long URL lists on theory slides unless adding `06-resources.md`.
 - Update `data/links.ts` when Cursor docs paths change.
-- Resources slide renders via `<CanonicalLinks />`.
+- Optional Resources slide: `<CanonicalLinks />` (not wired in `slides.md` today).
 
 ## Acceptance pass (PRD §10)
 
-Before calling the deck done, confirm:
-
-1. Self-descriptive must-cover topics from slides alone
-2. Section complete (PRD §4–§5 must-cover)
-3. Link-complete (`data/links.ts` + on-slide / Resources)
-4. Brand-aligned (no Seriph / Unsplash / purple AI gradients)
-5. No facilitator-only artifacts committed
-6. `npm run build` succeeds
-7. English throughout
-8. En-dash punctuation per PRD §9 / `slide-authoring.mdc` (no `—` or ` - ` as sentence dashes in slide copy)
+After deck edits, confirm PRD §10 maintenance criteria: self-descriptive slides, `slides.md` / `pages/` structure, `data/links.ts` + verify-links, brand alignment, repo-clean, runnable on supported Node, English, en-dash punctuation.

@@ -21,9 +21,13 @@ src: ./pages/02-theory.md
 ---
 
 ---
-src: ./pages/03-best-practices.md
+src: ./pages/03-practical.md
 ---
 
 ---
-src: ./pages/06-close.md
+src: ./pages/04-best-practices.md
+---
+
+---
+src: ./pages/05-close.md
 ---

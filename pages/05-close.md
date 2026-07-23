@@ -3,9 +3,6 @@ layout: qa
 ---
 
 # Q&A
-
-
-
 <SectionFigure
   name="crt-communicator"
   position="bottom"

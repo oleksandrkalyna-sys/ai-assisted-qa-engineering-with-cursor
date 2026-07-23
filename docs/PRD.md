@@ -6,17 +6,25 @@
 | Audience | QA engineers |
 | Language | English |
 | Duration context | ~1 hour live delivery (timing is not a repo artifact) |
-| Authoring format | [Slidev](https://sli.dev/) |
+| Authoring format | [Slidev](https://sli.dev/) (`theme: default`, `@slidev/theme-default`) |
 | Brand source | Corporate PowerPoint template (MEV Simple Light) |
 | Repo product scope | Everything required to build, present, and export the slides |
+
+### Document authority
+
+| Source | Role |
+| --- | --- |
+| `slides.md`, `pages/*.md` | **Authoritative** for slide order, copy, layouts, and what ships in the deck |
+| `data/links.ts` | **Authoritative** for canonical and stretch URL registry |
+| `docs/PRD.md` | Describes the **as-built** product, brand, and maintenance rules; update this file when the deck changes |
 
 ---
 
 ## 1. Problem / opportunity
 
-QA engineers are expected to move faster with AI-assisted tooling, but Cursor’s concepts (tokens, models, agents, harness, rules/skills, pricing) are often learned ad hoc. That leads to weak prompts, wasted context, untrusted test output, and inconsistent project guidance.
+QA engineers are expected to move faster with AI-assisted tooling, but Cursor’s concepts (tokens, models, agents, harness, rules/skills/commands) are often learned ad hoc. That leads to weak prompts, wasted context, untrusted test output, and inconsistent project guidance.
 
-This product is a **GitHub-ready slide deck** that teaches Cursor fluency for QA workflows. The deck must stand alone: a reader without a facilitator should understand the concepts and reach official documentation via in-slide links.
+This product is a **GitHub-ready slide deck** that teaches Cursor fluency for QA workflows. The deck must stand alone: a reader without a facilitator should understand the concepts and reach official documentation via **in-slide links** and the curated registry in `data/links.ts`.
 
 ---
 
@@ -25,10 +33,10 @@ This product is a **GitHub-ready slide deck** that teaches Cursor fluency for QA
 ### Goals
 
 - Deliver a branded, English Slidev deck that teaches AI-assisted QA engineering with Cursor.
-- Keep all teaching content **on the slides** (section map, definitions, practices, demo cues, resources).
-- Include **canonical links** for every non-trivial tool or standard mentioned.
+- Keep all teaching content **on the slides** (definitions, practices, live-demo outline, mental models).
+- Maintain **canonical links** in `data/links.ts` and surface URLs on slides where topics are introduced.
 - Match corporate visual standards closely enough that the deck is presentation-ready for internal use.
-- Support optional PDF/PPTX export via existing Slidev scripts for distribution.
+- Support PDF/PPTX export via Slidev scripts (`export`, `export:pdf`, `export:pptx`).
 
 ### Non-goals (explicitly out of this repository)
 
@@ -58,156 +66,148 @@ QA engineers who write or maintain automated tests, investigate failures, and co
 
 After reading/viewing the deck, a QA engineer should be able to:
 
-1. Explain tokens, context windows, models, agents, and the Cursor harness at a practical level.
-2. Reason about pricing/usage impact on daily QA work.
-3. Describe what `AGENTS.md` is for and how it relates to project rules.
-4. Choose appropriate Cursor modes (Chat / Agent / Inline / Tab) for common QA tasks.
-5. Apply safe patterns: generate → review → verify → automate.
-6. Know where to find official docs for skills, commands, rules, and pricing.
+1. Explain tokens, context windows (including static vs dynamic context), models, agents, harness, and the agent loop at a practical level.
+2. Relate model choice, Chat vs Agent usage, and cost/quality tradeoffs to QA work (including where to read Cursor models and pricing docs).
+3. Describe what `AGENTS.md` is for and how it relates to **rules**, **skills**, and **commands** in a repo.
+4. Follow the workshop’s **live demo** themes (DoR for testing, follow-ups, test cases, runs, bugs) and the **generate → review → verify → automate** loop.
+5. Apply the **QA habits** slide: grounding, human verification, diff review, and encoding repeated fixes in project guidance.
+6. Use **in-slide links** to reach official Cursor docs, AGENTS.md, and related references (maintainers sync URLs in `data/links.ts`; optional `06-resources.md` would surface the registry on slides).
 
 ---
 
-## 4. Slide deck structure
+## 4. Slide deck structure (as built)
 
-Ordered narrative for ~1h delivery. The PRD defines **sections and slide intent**, not minute budgets.
+Entry point: `slides.md` imports page files in this order:
 
-| # | Section | Purpose |
+| Import order | File | Section | Purpose |
+| --- | --- | --- | --- |
+| 1 | `pages/01-intro.md` | Title / intro | Cover + **Agenda** |
+| 2 | `pages/02-theory.md` | General theory | Foundations through rules, skills, and commands |
+| 3 | `pages/03-practical.md` | Live demo | **Demo time** section outline |
+| 4 | `pages/04-best-practices.md` | Cursor best practices | **QA habits**, QA mental model, SDLC framing |
+| 5 | `pages/05-close.md` | Q&A / close | Q&A + thank-you |
+
+**Numbering:** File prefixes `01`–`05` follow presentation order; `06` is reserved for optional `06-resources.md`.
+
+Theory opens on **Tokens** (no separate theory section-header slide).
+
+### Agenda (implemented)
+
+On `01-intro.md`, four outcome-oriented bullets (no clock times):
+
+- Foundations: tokens, context windows, models, agents, and harness
+- Ground Cursor with `AGENTS.md`, rules, skills, and commands
+- Live demo – DoR, follow-ups, test cases, runs, and bugs in Cursor
+- Apply generate → review → verify → automate as the daily QA loop
+
+### Optional extensions (not in the deck today)
+
+Add only when product owners want them; keep `slides.md` and this PRD in sync:
+
+- Additional slides in `pages/03-practical.md` – formal **demo cue** slides (Goal / Observe / Outcome / Docs template)
+- `pages/06-resources.md` – scannable list via `<CanonicalLinks />` (and optional `includeStretch`)
+- Dedicated slides for Cursor modes (Inline / Tab), standalone pricing page, or expanded rules vs skills comparison
+- Contact layout on close, if corporate template requires it
+
+---
+
+## 5. Content inventory (as built)
+
+### 5.1 Title / intro (`01-intro.md`)
+
+| Slide | Layout | Content |
 | --- | --- | --- |
-| 1 | Title / intro | Workshop title; **Agenda** slide (outcomes, no timing) |
-| 2 | General theory | Foundational concepts for using Cursor effectively |
-| 3 | Cursor best practices | How QA engineers should work day to day |
-| 4 | Practical usage | Skills, commands, and on-slide demo cues |
-| 5 | Resources | Curated canonical links |
-| 6 | Q&A / close | Q&A and thank-you layouts |
+| Cover | `cover` | Title **AI-Assisted QA Engineering with Cursor**; hero `<SectionFigure name="vintage-tv" />` |
+| Agenda | `default` | Four bullets (see §4) |
 
-### Must-cover vs stretch
+### 5.2 General theory (`02-theory.md`)
 
-Use **must-cover** slides for a tight session; add **stretch** slides when there is time or for self-study readers.
+| Slide | Layout | Topic |
+| --- | --- | --- |
+| Tokens | `two-cols` | Tokenization; tokenizer explorer link; `diagram-tokenizer-example.png` |
+| Context window | `two-cols` | Working memory, QA implications; Tim Wappat primer link; `diagram-context-window.png` |
+| Static vs Dynamic context | `two-cols` | `AGENTS.md`/rules vs skills/tools; `diagram-six-types-agent-context.png` |
+| Models | `default` | LLM behavior, non-determinism, Composer; Chat vs Agent; benchmarks + [Models & pricing](https://cursor.com/docs/models-and-pricing) |
+| Agents | `two-cols` | Agent = model + harness; harness links; `diagram-agent-harness.png` |
+| Agent is not a chat. It's a cycle. | `two-cols` | Perceive → plan → act → observe loop; `diagram-agent-cycle.png` |
+| AGENTS.md | `two-cols` | Repo-root instructions; [agents.md](https://agents.md/); `sample-agents-md.png` |
+| Rules | `default` | `.cursor/rules/`, `.mdc` scoping; [Rules docs](https://cursor.com/docs/context/rules) |
+| Skills: procedural knowledge on demand | `default` | `SKILL.md`, progressive disclosure; Cursor, Anthropic, skills.sh links |
+| Commands | `default` | `.cursor/commands/`; [Cursor docs](https://cursor.com/docs) |
 
-#### Must-cover
+### 5.3 Live demo (`03-practical.md`)
 
-- Title cover; **Agenda** slide (outcomes aligned with §3)
-- Tokens & context window (QA implications)
-- Models vs agents vs tools/harness
-- Pricing / usage awareness + link
-- `AGENTS.md` + link to canonical guidance
-- QA loop: generate → review → verify → automate
-- Cursor modes: Chat / Agent / Inline / Tab
-- Context grounding: rules, skills, repo context
-- Safe QA patterns + what not to trust without verification
-- Skills & commands explained on-slide + docs links
-- At least one demo cue slide (self-contained)
-- Resources slide(s)
-- Q&A + thank-you
+| Slide | Layout | Topic |
+| --- | --- | --- |
+| Demo time | `section` (light) | Live demo outline: DoR, follow-up, test cases, runs, bug (self-contained bullets) |
 
-#### Stretch
+**Live demo slide:** The **Demo time** section is an on-slide **facilitator-facing outline**, not the structured demo-cue template (Goal / Observe / Outcome / Docs). Cues must remain understandable without private-repo prep docs.
 
-- Deeper pricing examples / plan comparison callouts
-- Context packing / `@` mentions / ignore patterns
-- Rules vs skills vs commands comparison table (expanded)
-- Flake triage workflow deep-dive
-- Additional demo cue slides (coverage, checklist generation, failure triage)
-- Contact / next-steps slide if required by corporate template vocabulary
-- Common pitfalls / anti-patterns gallery
+### 5.4 Cursor best practices (`04-best-practices.md`)
 
----
+| Slide | Layout | Topic |
+| --- | --- | --- |
+| Starting with Cursor – QA habits | `default` | Eight habits: verification, human gate, narrow scope, grounding, rules/skills/`AGENTS.md`, diff review, trust boundaries (secrets, silent deletes, weak asserts) |
+| QA mental model | `default` | generate → review → verify → automate (four steps) |
+| Traditional SDLC → AI-Driven SDLC | `default` | `diagram-sdlc-traditional-vs-ai.png`; verification emphasis |
 
-## 5. Content requirements
+**Chat vs Agent** appears on the Models slide (and Rules mentions Chat, Agent, and related flows). **Inline** and **Tab** are not covered on slides today; add a dedicated modes slide only if product owners want it (see §4 optional extensions).
 
-### 5.1 Title / intro
+### 5.5 Q&A / close (`05-close.md`)
 
-- Workshop title: **AI-Assisted QA Engineering with Cursor**
-- Audience: QA engineers
-- Cover slide (corporate title layout vocabulary)
-- One **default** slide after cover: **Agenda** (3–5 outcomes aligned with §3; not a run-of-show or clock times)
-- Section headers in later parts (best practices, practical, resources) mark major transitions; theory opens on **Tokens** (no separate opener slide)
+| Slide | Layout | Content |
+| --- | --- | --- |
+| Q&A | `qa` | Title **Q&A**; `<SectionFigure name="crt-communicator" />` |
+| Thank you | `thank-you` | Closing slide |
 
-### 5.2 General theory (must-cover topics)
+No contact layout is implemented.
 
-| Topic | Slide intent |
-| --- | --- |
-| Tokens & context | What a token is; why context window size matters for large test suites / logs |
-| Models | What a model is; quality, speed, and non-determinism; practical default (e.g. Composer) |
-| Pricing & usage | Dedicated slide **after Models**; QA drivers (context, Agent vs Chat); link to current pricing |
-| Agents | Agent = model + instructions + tools, looping toward a goal |
-| Harness | Cursor’s orchestration layer (tools, permissions, UI) around the model — on-slide with Agents |
-| `AGENTS.md` | Project-level agent instructions; open format; why teams adopt it |
-| Rules / skills / commands | How each steers agents; links to docs |
-| QA mental model | generate → review → verify → automate |
+### 5.6 Resources (component only)
 
-### 5.3 Cursor best practices (must-cover topics)
-
-| Topic | Slide intent |
-| --- | --- |
-| Modes | When to use Chat vs Agent vs Inline vs Tab for QA work |
-| Grounding | Repo context, rules, skills — reduce hallucination |
-| Safe patterns | Test generation, bug investigation, flake triage with human verification |
-| Trust boundary | What not to merge/run without review (secrets, flaky assertions, silent deletes) |
-
-### 5.4 Practical usage (must-cover topics)
-
-| Topic | Slide intent |
-| --- | --- |
-| Skills | What skills are; when QA would use them; link to docs |
-| Commands | What commands are; when to use them; link to docs |
-| Demo cues | Short, self-contained slides describing example flows (e.g. investigate failing test, generate coverage). Cues may reference patterns from a live project such as Isara, but **must not** depend on external prep docs in this repo |
-
-Demo cue slides must include:
-
-- Goal (one sentence)
-- What the attendee should observe
-- Expected outcome class (e.g. “draft test + human review”)
-- Link to relevant Cursor docs where applicable
-
-### 5.5 Resources
-
-Dedicated slide(s) listing all required canonical URLs (see §6). Prefer one scannable list over dense prose.
-
-### 5.6 Q&A / close
-
-- Q&A slide: `layout: two-cols` with title left and optional editorial figure right (`TwoColFigure`), or dedicated `qa` layout if centered copy is required later
-- Thank-you layout
-- Optional contact layout only if brand template requires it for closing; no facilitator FAQ dump
+`components/CanonicalLinks.vue` reads `data/links.ts` and is ready for a future `06-resources.md` slide. **Canonical URLs are not rendered as a dedicated Resources slide in the current deck**; most checklist items appear inline on theory slides (see §6).
 
 ---
 
 ## 6. Links requirements
 
-### Self-descriptive rule
+### Registry
 
-A reader who opens the deck without a facilitator must still understand the concepts and find official docs via **in-slide or Resources-section URLs**.
+- **`canonicalLinks`** and **`stretchLinks`** in `data/links.ts` are the single update point when Cursor reorganizes docs.
+- Run the **verify-links** command (`.cursor/commands/verify-links.md`) after URL changes.
 
-### Linking rule
+### Linking rule (as built)
 
-Every non-trivial claim or tool mention that has an official source must carry a URL either:
+Prefer URLs **on the slide where the topic is introduced**. A future Resources slide may duplicate the registry for scanning; until then, `data/links.ts` remains the checklist for maintenance.
 
-- on the slide where it is introduced, or
-- on the Resources slide(s), referenced clearly from that section
+### Canonical checklist (`canonicalLinks`)
 
-Prefer stable canonical URLs. If a URL changes, update the deck; do not leave orphan marketing claims.
+| Topic | URL | Where it appears today |
+| --- | --- | --- |
+| Cursor docs | https://cursor.com/docs | Commands slide |
+| Agent overview | https://cursor.com/docs/agent/overview | Agents slide |
+| Rules | https://cursor.com/docs/context/rules | Rules slide |
+| Skills | https://cursor.com/docs/skills | Skills slide |
+| Commands | https://cursor.com/docs | Commands slide |
+| Pricing | https://cursor.com/pricing | Registry only; Models slide links to [models-and-pricing docs](https://cursor.com/docs/models-and-pricing) |
+| AGENTS.md | https://agents.md/ | AGENTS.md slide |
+| Slidev | https://sli.dev/ | Registry only (deck tooling; not required on slides) |
 
-### Required links checklist
+### Stretch registry (`stretchLinks`)
 
-Slides must include (or Resources must list) at least:
-
-| Topic | Canonical / preferred URL |
+| Topic | On slides today |
 | --- | --- |
-| Cursor docs home | https://cursor.com/docs |
-| Agent overview | https://cursor.com/docs/agent/overview |
-| Rules | https://cursor.com/docs/context/rules |
-| Skills | https://cursor.com/docs/skills (or current Cursor skills docs path if renamed) |
-| Commands | https://cursor.com/docs (commands section / current commands docs path) |
-| Pricing | https://cursor.com/pricing |
-| AGENTS.md open format | https://agents.md/ |
-| Slidev (if mentioned as tooling) | https://sli.dev/ |
+| LangChain / Medium harness articles | Agents slide |
+| Tokenizer (try it) | Tokens slide |
+| Understanding context windows in LLMs | Context window slide |
+| Cursor Learn | Registry only |
+| Subagents | Registry only |
 
-During implementation, verify each URL resolves and replace with the then-current official path if Cursor reorganizes docs. Record the verified URLs on the Resources slides.
+Additional stretch URLs may stay registry-only until cited on a slide.
 
-### Stretch links (optional)
+### Third-party links on slides (not in `canonicalLinks`)
 
-- Cursor Learn: agents / tool calling primers under https://cursor.com/learn
-- Browser / agent tools docs for UI verification demos
-- Subagents docs if covered as stretch content: https://cursor.com/docs/subagents
+- [Cursor Bench](https://cursor.com/cursorbench), [DeepSWE](https://deepswe.datacurve.ai/)
+- [Anthropic Agent Skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), [skills.sh](https://www.skills.sh/)
 
 ---
 
@@ -217,18 +217,20 @@ During implementation, verify each URL resolves and replace with the then-curren
 
 | Deliverable | Notes |
 | --- | --- |
-| Slidev deck source | Primary: `slides.md` (and any split pages under `pages/` if needed) |
-| Brand theme / styles / assets | Custom theme or CSS tokens matching corporate template; replace starter `seriph` look |
-| Package scripts | Existing `dev` / `build` / `export` in `package.json` for local present and PDF/PPTX export |
-| This PRD | `docs/PRD.md` — requirements for building the deck |
+| Slidev deck source | `slides.md` + `pages/01-intro.md`, `02-theory.md`, `03-practical.md`, `04-best-practices.md`, `05-close.md` |
+| Brand theme / styles / assets | `layouts/`, `styles/`, `public/brand/`, Vue components (`BrandLogo`, `BrandMotif`, `SectionFigure`, `TwoColFigure`, `CanonicalLinks`) |
+| Canonical links | `data/links.ts` |
+| Package scripts | `dev`, `build`, `export`, `export:pdf`, `export:pptx` in `package.json` |
+| This PRD | `docs/PRD.md` — as-built product description |
 
 ### Not in repository
 
 - Agenda, timing, speaker notes, prep, facilitator Q&A banks, Isara demo scripts
 
-### Current starter status
+### Runtime
 
-The default Slidev starter content in `slides.md` (theme `seriph`, “Welcome to Slidev”) is **placeholder only**. Implementation must replace it with workshop content and corporate branding — do not extend the starter demo narrative.
+- **Node.js 20+** required for `@slidev/cli` (see `package.json` `engines`; Node 18 fails the build).
+- Export artifacts (e.g. `slides-export.pdf`) are local outputs; do not commit them unless distribution policy says otherwise (ignored via `.gitignore`).
 
 ---
 
@@ -262,60 +264,55 @@ Derived from the corporate Presentation template (theme “Simple Light”, ~16:
 | Display / titles | Oswald (embedded in template) | Use Oswald if license/assets allow; otherwise a close geometric sans |
 | Body | Arial (theme minor) | Arial or equivalent clean sans for body |
 
-### Layout vocabulary (mirror corporate, not default Seriph)
+### Layout vocabulary (implemented)
 
-Implement or approximate these layout intents:
+Custom layouts under `layouts/`: `cover`, `default`, `two-cols`, `section`, `qa`, `thank-you`, `center`. Contact layout is optional and not implemented.
 
-- Title
-- Section header
-- Title and body
-- Title and two columns
-- Title only / main point
-- Q&A
-- Thank you
-- Contact (optional close)
+Map backgrounds per `.cursor/rules/brand-and-theme.mdc` (`bg-default.jpg`, `bg-section-blue.jpg`, `bg-section-light.jpg`, `bg-thankyou.jpg`).
 
 ### Brand assets (`public/brand/`)
 
-Extracted from the corporate Presentation template. Use these committed files in the Slidev theme — do not substitute ad-hoc backgrounds or decorative stock photos from template example slides.
-
 | Asset | File | Usage |
 | --- | --- | --- |
-| Default background | `bg-default.jpg` | Title, title+body, two-column, title-only, Q&A |
-| Section background (blue) | `bg-section-blue.jpg` | Section header slides (dark field, light text) |
-| Section background (light) | `bg-section-light.jpg` | Section opener variant |
-| Thank-you background | `bg-thankyou.jpg` | Thank-you / strong brand close |
-| Logo | `logo-mev.png` | Top-right on branded slides |
-| Arc motif | `motif-arc.png` | Bottom-left accent on title and section slides |
-
-Placement: logo top-right; arc motif bottom-left. Backgrounds are 1920×1080 (~16:9). Logo and motif are PNG with transparency.
+| Default background | `bg-default.jpg` | Title, title+body, two-column, Q&A |
+| Section background (blue) | `bg-section-blue.jpg` | Section header (dark field) |
+| Section background (light) | `bg-section-light.jpg` | Section opener variant (e.g. Demo time) |
+| Thank-you background | `bg-thankyou.jpg` | Thank-you |
+| Logo | `logo-mev.png` | Wordmark (variant by background) |
+| Arc motif | `motif-arc.png` | Accent on branded slides |
 
 #### Editorial figures (`public/brand/figures/`)
 
-B&W vintage photo cutouts and retro-tech collages with selective primary-blue accents. These give the deck its corporate editorial tone — use them, not generic stock imagery.
-
-| Asset | File | Suggested use |
+| Asset | File | Usage in deck |
 | --- | --- | --- |
-| Filmmaker | `figure-filmmaker.png` | Title, intro, observation/documentation themes |
-| Vintage TV | `figure-vintage-tv.png` | Title hero, strong brand moments |
-| Retro computer | `figure-retro-computer.png` | Tech, tooling, harness topics |
-| Pointing hand | `figure-pointing-hand.png` | Callouts, bullets, emphasis |
-| Enter runners | `figure-enter-runners.png` | Momentum, action, best-practices |
-| CRT communicator | `figure-crt-communicator.png` | Q&A, communication, stretch |
-| Tokenizer diagram | `diagram-tokenizer-example.png` | Tokens slide (two-column) |
-| Context window diagram | `diagram-context-window.png` | Context window slide |
-| Agent harness diagram | `diagram-agent-harness.png` | Agents slide |
-| AGENTS.md sample | `sample-agents-md.png` | AGENTS.md slide |
+| Vintage TV | `figure-vintage-tv.png` | Cover hero (`SectionFigure`) |
+| CRT communicator | `figure-crt-communicator.png` | Q&A (`SectionFigure`) |
+| Filmmaker | `figure-filmmaker.png` | Available for future slides |
+| Retro computer | `figure-retro-computer.png` | Available for future slides |
+| Pointing hand | `figure-pointing-hand.png` | Available for future slides |
+| Enter runners | `figure-enter-runners.png` | Available for future slides |
+| Tokenizer diagram | `diagram-tokenizer-example.png` | Tokens |
+| Context window diagram | `diagram-context-window.png` | Context window |
+| Six types of agent context | `diagram-six-types-agent-context.png` | Static vs dynamic context |
+| Agent harness diagram | `diagram-agent-harness.png` | Agents |
+| Agent cycle diagram | `diagram-agent-cycle.png` | Agent is not a chat |
+| SDLC comparison | `diagram-sdlc-traditional-vs-ai.png` | SDLC shift |
+| AGENTS.md sample | `sample-agents-md.png` | AGENTS.md |
 
-Use 0–1 figure per content slide. On **`layout: two-cols`** slides, put copy on the left and visuals on the right with **`<TwoColFigure src="…" alt="…" />`** (shared spacing in `styles/layouts.css` — image sits below the slide title). Optional source line: class `two-col-figure-source`. Non-image right columns use wrapper class `two-col-right-slot`. Use **`<SectionFigure>` only on the cover** hero (not on content slides).
+**Figure components**
 
-PowerPoint slides 19–21 are asset-catalog collages (many images + GIFs) — **not** a layout to replicate. One-off images from those slides that are not in `public/brand/` are excluded.
+- **`layout: two-cols`:** copy left; `<TwoColFigure src="…" alt="…" />` in `::right::` (styling in `styles/layouts.css`). Optional attribution: class `two-col-figure-source`.
+- **`<SectionFigure>`:** cover hero and Q&A editorial art (see `components/SectionFigure.vue` for valid `name` keys). Do not use on ordinary title+body or two-column content slides.
+- Prefer **0–1** figure per content slide.
+
+PowerPoint slides 19–21 are asset-catalog collages — **not** a layout to replicate.
 
 ### Brand non-goals
 
 - New visual identity
 - Purple-on-white / generic “AI gradient” aesthetics
 - Decorative clutter that fights corporate layouts
+- Default Seriph starter look or `@slidev/theme-seriph` as the visual identity
 
 ---
 
@@ -323,38 +320,42 @@ PowerPoint slides 19–21 are asset-catalog collages (many images + GIFs) — **
 
 ### Must
 
-- Optional **section header** slides between major parts (theory opens on content slides)
 - Definitions readable without spoken filler
-- Demo **cue** slides that stand alone (goal, observe, outcome) without a prep doc
-- Resources / inline links for standards and Cursor features
 - English throughout
-- **Punctuation:** In slide body copy and link labels, use a spaced **en dash** (` – `, U+2013) for breaks and appositives—not an em dash (`—`) or a spaced hyphen (` - `). Keep Slidev dividers (`---` on its own line), markdown table rules (`| --- |`), and numeric ranges (`0–1`) unchanged; use `→` for step sequences.
+- **Punctuation:** In slide body copy and link labels, use a spaced **en dash** (` – `, U+2013) for breaks and appositives—not an em dash (`—`) or a spaced hyphen (` - `). Keep Slidev dividers (`---`), markdown table rules (`| --- |`), and numeric ranges (`0–1`, `01`–`06`) unchanged; use `→` for step sequences.
+- Live demo outline on **Demo time** must remain understandable without private-repo prep docs
 
 ### Must not
 
 - Depend on speaker notes for core meaning
 - Encode minute-by-minute timing in the repo
-- Commit facilitator-only materials
-- Require access to Isara (or any private demo repo) to understand practical slides — cues may *illustrate* with that project’s patterns, but concepts and steps must be general enough to follow from the deck alone
+- Commit facilitator-only materials as product artifacts
+- Require access to Isara (or any private demo repo) to understand the demo outline
 
 ### Density guideline
 
-Prefer one idea per slide. Use two-column layouts for comparisons and for text + figure pairs (`TwoColFigure` on the right). Move long URL lists to Resources rather than crowding theory slides.
+Prefer one idea per slide. Use two-column layouts for text + diagram pairs. Long canonical URL lists belong on a future Resources slide (`<CanonicalLinks />`), not crowded onto theory slides.
+
+### Demo cue template (optional additions to `03-practical.md`)
+
+If adding formal demo cue slides alongside **Demo time**, each cue must include: **Goal**, **Observe**, **Outcome**, and **Docs** (see `.cursor/skills/slide-authoring/SKILL.md`). This template does **not** apply to the current **Demo time** section slide.
 
 ---
 
-## 10. Acceptance criteria
+## 10. Acceptance criteria (maintenance)
 
-The deck is **done** when all of the following are true:
+When changing the deck, keep the product consistent with this PRD:
 
-1. **Self-descriptive:** A QA engineer can learn the must-cover topics from the slides alone.
-2. **Section complete:** All must-cover items in §4 and §5 appear as slides (or clear slide groups).
-3. **Link-complete:** Every item on the §6 required links checklist appears on-slide or on Resources and resolves.
-4. **Brand-aligned:** Colors, typography intent, aspect ratio, layout vocabulary, and `public/brand/` assets match §8; default Seriph starter look is gone.
-5. **Repo-clean:** No agenda, timing, speaker-notes deliverable, prep, or facilitator Q&A bank files are required or committed as product artifacts.
-6. **Runnable:** `npm run dev` presents the workshop deck; `npm run build` / `npm run export` remain viable for SPA/PDF/PPTX distribution.
-7. **Language:** All slide content is English.
-8. **Prose punctuation:** Slide copy and on-slide link labels follow the en-dash rule in §9 (no em dashes or spaced hyphens used as sentence dashes).
+1. **Self-descriptive:** Core teaching content remains on slides; agenda and demo outline stand alone.
+2. **Structure:** `slides.md` import order matches §4; page filenames stay in the `01`–`06` convention.
+3. **Links:** `data/links.ts` updated when canonical URLs change; verify with the verify-links workflow; on-slide links stay aligned with the registry.
+4. **Brand-aligned:** Layouts and `public/brand/` assets per §8; no Seriph/starter/demo-deck narrative.
+5. **Repo-clean:** No facilitator-only product files (agenda docs, timing sheets, Q&A banks, prep checklists, Isara scripts).
+6. **Runnable:** `npm run dev` presents the workshop deck; `npm run build` / `npm run export*` succeed on **Node 20+** (`package.json` `engines`, `.nvmrc`).
+7. **Language:** English throughout slide copy.
+8. **Prose punctuation:** En-dash rule in §9.
+
+After substantive deck edits, update **this PRD** §4–§6 and §8 tables so requirements stay aligned with `pages/`.
 
 ---
 
@@ -362,20 +363,18 @@ The deck is **done** when all of the following are true:
 
 | Risk | Mitigation |
 | --- | --- |
-| Brand fidelity gap (Slidev ≠ PowerPoint) | Use `public/brand/` assets and CSS tokens; visually compare layouts against template during implementation |
-| Link rot (Cursor docs paths change) | Verify URLs at implementation; keep Resources as single update point |
-| Over-dense slides | Enforce one-idea-per-slide; move detail to stretch or Resources |
-| Demo cues too project-specific | Keep cues pattern-based; never require private repo access to understand the slide |
+| Brand fidelity gap (Slidev ≠ PowerPoint) | Use `public/brand/` assets and CSS tokens; compare layouts against template when changing theme |
+| Link rot (Cursor docs paths change) | `data/links.ts` + verify-links; add Resources slide when link surface area grows |
+| Over-dense slides | One idea per slide; optional demo cues in `03-practical.md` and link index in `06-resources.md` |
+| Demo outline too project-specific | Keep Demo time pattern-based; no private-repo dependency |
 | Scope creep into facilitator materials | Reject PRs that add agenda/timing/notes/prep as product files |
+| PRD drift from deck | Treat `pages/` as authoritative; refresh PRD §4–§6 on each major content PR |
 
 ---
 
-## 12. Implementation notes (future work; not this PRD task)
+## 12. Changelog discipline
 
-When building the deck after this PRD:
-
-1. Replace `slides.md` starter content with workshop sections §4–§5.
-2. Add theme/CSS using §8 tokens; drop `@slidev/theme-seriph` as the visual identity.
-3. Verify and embed §6 URLs.
-4. Add must-cover slides first; keep stretch content clearly optional or behind a short appendix section.
-5. Do not add facilitator docs to the repository.
+1. Change slide content in `pages/` and wiring in `slides.md` first.
+2. Update `data/links.ts` when URLs change.
+3. Mirror structure and inventory in this PRD (§4–§6, §8 figure table).
+4. Keep `.cursor/rules/slide-authoring.mdc` and `brand-and-theme.mdc` consistent with §8–§9 when layout or figure rules change.
