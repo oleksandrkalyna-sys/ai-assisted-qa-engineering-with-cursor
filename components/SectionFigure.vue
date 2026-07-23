@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { resolveAssetUrl } from '../utils/resolveAssetUrl'
 
 const FIGURES = {
   filmmaker: '/brand/figures/figure-filmmaker.png',
@@ -25,7 +26,7 @@ const props = withDefaults(defineProps<{
   alt: '',
 })
 
-const src = computed(() => FIGURES[props.name])
+const src = computed(() => resolveAssetUrl(FIGURES[props.name]))
 
 const positionClass = computed(() => {
   switch (props.position) {

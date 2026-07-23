@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { handleBackground } from './layoutHelper'
+import { handleBackground, resolveAssetUrl } from './layoutHelper'
 
 const props = defineProps({
   background: {
@@ -16,7 +16,7 @@ const style = computed(() => handleBackground(props.background))
   <div class="slidev-layout cover relative w-full h-full" :style="style">
     <img
       class="cover-logo z-2 object-contain"
-      src="/brand/motif-arc.png"
+      :src="resolveAssetUrl('/brand/motif-arc.png')"
       alt="MEV"
     >
     <!-- No position:relative here — absolute figures must anchor to the slide -->

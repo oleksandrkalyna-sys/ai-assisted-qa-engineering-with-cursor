@@ -1,13 +1,18 @@
 <script setup lang="ts">
-defineProps<{
+import { computed } from 'vue'
+import { resolveAssetUrl } from '../utils/resolveAssetUrl'
+
+const props = defineProps<{
   src: string
   alt: string
 }>()
+
+const resolvedSrc = computed(() => resolveAssetUrl(props.src))
 </script>
 
 <template>
   <img
-    :src="src"
+    :src="resolvedSrc"
     :alt="alt"
     class="two-col-figure"
   >

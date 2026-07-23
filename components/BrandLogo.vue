@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { resolveAssetUrl } from '../utils/resolveAssetUrl'
 
 const props = withDefaults(defineProps<{
   /**
@@ -15,9 +16,11 @@ const props = withDefaults(defineProps<{
 })
 
 const src = computed(() =>
-  props.variant === 'light'
-    ? '/brand/logo-mev.png'
-    : '/brand/motif-arc.png',
+  resolveAssetUrl(
+    props.variant === 'light'
+      ? '/brand/logo-mev.png'
+      : '/brand/motif-arc.png',
+  ),
 )
 </script>
 
