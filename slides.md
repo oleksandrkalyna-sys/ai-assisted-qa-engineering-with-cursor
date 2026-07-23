@@ -1,6 +1,7 @@
 ---
 theme: default
 title: AI-Assisted QA Engineering with Cursor
+base: /ai-assisted-qa-engineering-with-cursor/
 info: |
   ## AI-Assisted QA Engineering with Cursor
   Self-descriptive Slidev workshop deck for QA engineers.
